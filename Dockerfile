@@ -1,11 +1,17 @@
+# 1. Use official Node.js image
 FROM node:18
 
+# 2. Set working directory inside container
 WORKDIR /app
 
-COPY  package*.json ./
+# 3. Copy dependency files
+COPY package*.json ./
 
-RUN node install
+# 4. Install dependencies
+RUN npm install
 
-COPY . . 
+# 5. Copy the rest of the app
+COPY . .
 
-CMD [ "npm", "start" ]
+# 6. Start the app
+CMD ["npm", "start"]
